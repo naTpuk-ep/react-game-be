@@ -12,9 +12,6 @@ router.get("/", async (req, res, next) => {
 	res.json(list);
 });
 
-
-
-
 router.post('/', async (req, res, next) => {
 
 		const { body } = req;
