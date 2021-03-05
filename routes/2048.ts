@@ -7,8 +7,6 @@ import { table } from "console";
 
 const router = Router();
 
-const tableName = process.env.PG_TABLENAME;
-
 router.get("/", async (req, res, next) => {
 	const list = await storage.listAll();
 	res.json(list);
@@ -33,9 +31,7 @@ router.post('/', async (req, res, next) => {
 		return;
 	}
 
-	const [user] = await knex(tableName)
-		.select()
-		.where({ name })
+	const [user] = await knex(storage.tableName).select().where({ name });
 
 	if (user) {
 		res.json({

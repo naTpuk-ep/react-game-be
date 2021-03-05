@@ -3,7 +3,7 @@ import { ItemType } from '../types/item';
 import { knex } from '../db/pg';
 
 
-const tableName = process.env.PG_TABLENAME;
+export const tableName = "score";
 
 export const listAll = async () => {
 	const list = await knex(tableName).select();
