@@ -1,3 +1,1 @@
-
-export const sessionTable = 'sessions';
-export const Usertable = 'users';
+export const tableName = "score";

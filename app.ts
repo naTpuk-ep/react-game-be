@@ -10,7 +10,7 @@ app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
-app.use("/score", router);
+app.use("/", router);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) { 

@@ -1,9 +1,7 @@
 
 import { ItemType } from '../types/item';
 import { knex } from '../db/pg';
-
-
-export const tableName = "score";
+import { tableName } from "../constants";
 
 export const listAll = async () => {
 	const list = await knex(tableName).select();

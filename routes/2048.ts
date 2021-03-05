@@ -2,14 +2,20 @@ import { v4 as uuid } from "uuid";
 import { Router } from "express";
 import * as storage from "../storage/postgre";
 import { knex } from "../db/pg";
-import { table } from "console";
-// import { auth } from "../middleware/auth";
+import { tableName } from "../constants";
 
 const router = Router();
 
 router.get("/", async (req, res, next) => {
-	const list = await storage.listAll();
-	res.json(list);
+	try {
+		const list = await storage.listAll();
+		res.json(list);
+	} catch (e: unknown) {
+		if (!(e instanceof Error)) {
+			throw e;
+		}
+		console.warn(`There was error: ${e.message}`);
+	}
 });
 
 router.post('/', async (req, res, next) => {
@@ -28,7 +34,7 @@ router.post('/', async (req, res, next) => {
 		return;
 	}
 
-	const [user] = await knex(storage.tableName).select().where({ name });
+	const [user] = await knex(tableName).select().where({ name });
 
 	if (user) {
 		res.json({
