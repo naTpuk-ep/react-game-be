@@ -2,13 +2,17 @@ import * as knexInit from 'knex';
 import * as initEnv from 'dotenv';
 initEnv.config();
 
-const { PG_PASSWORD, PG_USERNAME, PG_HOST, PG_DBNAME } = process.env;
+const {
+	PG_PASSWORD,
+	PG_USERNAME,
+	PG_HOST,
+	PG_DBNAME,
+	DATABASE_URL,
+} = process.env;
 
-const url =
-	process.env.DATABASE_URL ??
-	`postgres://${PG_USERNAME}:${PG_PASSWORD}@${PG_HOST}/${PG_DBNAME}`;
-
-console.log(url);	
+const url = DATABASE_URL
+	? `${DATABASE_URL}?ssl=true`
+	: `postgres://${PG_USERNAME}:${PG_PASSWORD}@${PG_HOST}/${PG_DBNAME}`;
 
 const knex = knexInit({
   client: 'pg',
