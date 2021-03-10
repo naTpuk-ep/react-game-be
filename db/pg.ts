@@ -11,7 +11,7 @@ const {
 } = process.env;
 
 const url = DATABASE_URL
-	? `${DATABASE_URL}?ssl=true`
+	? `${DATABASE_URL}?ssl=true?sslfactory=org.postgresql.ssl.NonValidatingFactory`
 	: `postgres://${PG_USERNAME}:${PG_PASSWORD}@${PG_HOST}/${PG_DBNAME}`;
 
 const knex = knexInit({
