@@ -8,6 +8,8 @@ const url =
 	process.env.DATABASE_URL ??
 	`postgres://${PG_USERNAME}:${PG_PASSWORD}@${PG_HOST}/${PG_DBNAME}`;
 
+console.log(url);	
+
 const knex = knexInit({
   client: 'pg',
 	connection: url,

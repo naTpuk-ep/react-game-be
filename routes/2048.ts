@@ -14,7 +14,7 @@ router.get("/", async (req, res, next) => {
 		if (!(e instanceof Error)) {
 			throw e;
 		}
-		console.warn(`There was error: ${e.message}`);
+		console.warn(`Router Error: ${e.message}`);
 	}
 });
 
